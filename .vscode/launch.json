@@ -13,7 +13,7 @@
       "internalConsoleOptions": "openOnSessionStart"
     },
     {
-      "name": "debug.js",
+      "name": "debug.js (Napi)",
       "type": "lldb",
       "request": "launch",
       "program": "/Users/mvv/.nvm/versions/node/v9.10.1/bin/node",

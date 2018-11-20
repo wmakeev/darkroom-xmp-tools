@@ -55,5 +55,33 @@ assert.strictEqual(encodedParamsStr, EXPOSE_PARAMS_BIN_STR)
 
 - `encodeClippingParams (params: ClippingParams): string`
 
+### Masks
+
+- `decodeMaskPoints<MaskPoint> (maskType: string, numberPoints: number, encodedPoints: string): Array<MaskPoint>`
+
+- `encodeMaskPoints<MaskPoint> (maskType: string, points: Array<MaskPoint>): string`
+
+#### circle mask
+
+- `decodeCircleMask (encodedMask: string): MaskCirclePoint`
+
+- `encodeCircleMask (mask: MaskCirclePoint): string`
+
+#### ellipse mask
+
+- `decodeEllipseMask (encodedMask: string): MaskEllipsePoint`
+
+- `encodeEllipseMask (mask: MaskEllipsePoint): string`
+
+#### gradient mask
+
+- `decodeGradientMask (encodedMask: string): MaskGradientPoint`
+
+- `encodeGradientMask (mask: MaskGradientPoint): string`
+
+## TODO
+
+- Improve errors message and arguments validation
+
 
 

@@ -7,7 +7,8 @@
         "src/tools.cpp",
         "src/expose.cpp",
         "src/blend.cpp",
-        "src/clipping.cpp"
+        "src/clipping.cpp",
+        "src/masks.cpp"
       ],
       "include_dirs" : [
         "<!@(node -p \"require('node-addon-api').include\")"

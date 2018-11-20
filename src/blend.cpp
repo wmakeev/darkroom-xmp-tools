@@ -1,8 +1,8 @@
 #include <napi.h>
 #include <string>
 
-#include "blend.hpp"
-#include "tools.hpp"
+#include "blend.h"
+#include "tools.h"
 
 static dt_develop_blend_params_t _default_blendop_params = {
     DEVELOP_MASK_DISABLED,

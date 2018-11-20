@@ -1,3 +1,5 @@
+#include <napi.h>
+
 extern "C"
 {
 #include <glib.h>

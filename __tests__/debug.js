@@ -1,19 +1,12 @@
-const assert = require('assert')
-const { decodeExposeParams, encodeExposeParams } = require('../build/Debug/darkroom-xmp-tools.node')
+// const assert = require('assert')
+const { decodeCircleMask, encodeCircleMask } = require('../build/Debug/darkroom-xmp-tools.node')
 
-// exposeParams: {
-//   "mode": "EXPOSURE_MODE_MANUAL",
-//   "black": 0.0021000057458877563,
-//   "exposure": 2.871999740600586,
-//   "deflickerPercentile": 50,
-//   "deflickerTargetLevel": -4
-// }
-const EXPOSE_PARAMS_BIN_STR = '0000000040a0093bd8ce374000004842000080c0'
+let paramsObj, encodedStr
 
-let paramsObj = decodeExposeParams(EXPOSE_PARAMS_BIN_STR)
-console.log('exposeParams:', JSON.stringify(paramsObj))
+const CIRCLE_MASK_BLOB = '13b50a3f1857f73eb6b2073e07288f3d'
 
-let encodedParamsStr = encodeExposeParams(paramsObj)
-console.log('encoded exposeParams:', encodedParamsStr)
+paramsObj = decodeCircleMask(CIRCLE_MASK_BLOB)
+console.log('gradientMask:', JSON.stringify(paramsObj))
 
-assert.strictEqual(encodedParamsStr, EXPOSE_PARAMS_BIN_STR)
+encodedStr = encodeCircleMask(paramsObj)
+console.log('encoded exposeParams:', encodedStr)

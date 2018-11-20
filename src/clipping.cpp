@@ -1,9 +1,9 @@
 #include <napi.h>
 #include <string>
 
-#include "common.hpp"
-#include "clipping.hpp"
-#include "tools.hpp"
+#include "common.h"
+#include "clipping.h"
+#include "tools.h"
 
 Napi::Value decode_clipping_params(const Napi::CallbackInfo &info)
 {
@@ -270,7 +270,7 @@ Napi::Value encode_clipping_params(const Napi::CallbackInfo &info)
   }
 
   const char *decoded_params = dt_exif_xmp_encode(
-      (const unsigned char *)&clipping_params, sizeof(clipping_params), NULL);
+      (const unsigned char *)&clipping_params, sizeof(dt_iop_clipping_params_t), NULL);
 
   return Napi::String::New(env, decoded_params);
 }

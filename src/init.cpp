@@ -3,9 +3,10 @@
 #include <iostream>
 #include <string>
 
-#include "blend.hpp"
-#include "expose.hpp"
-#include "clipping.hpp"
+#include "blend.h"
+#include "expose.h"
+#include "clipping.h"
+#include "masks.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
@@ -32,6 +33,14 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set(
       Napi::String::New(env, "encodeClippingParams"),
       Napi::Function::New(env, encode_clipping_params));
+
+  exports.Set(
+      Napi::String::New(env, "decodeMaskPoints"),
+      Napi::Function::New(env, decode_mask_points));
+
+  exports.Set(
+      Napi::String::New(env, "encodeMaskPoints"),
+      Napi::Function::New(env, encode_mask_points));
 
   return exports;
 };

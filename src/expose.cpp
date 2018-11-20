@@ -1,8 +1,8 @@
 #include <napi.h>
 #include <string>
 
-#include "expose.hpp"
-#include "tools.hpp"
+#include "expose.h"
+#include "tools.h"
 
 Napi::Value decode_expose_params(const Napi::CallbackInfo &info)
 {
@@ -128,8 +128,8 @@ Napi::Value encode_expose_params(const Napi::CallbackInfo &info)
         expose_params_object.Get("deflickerTargetLevel").ToNumber().FloatValue();
   }
 
-  const char *decoded_params = dt_exif_xmp_encode(
-      (const unsigned char *)&expose_params, sizeof(expose_params), NULL);
+  const char *encoded_params = dt_exif_xmp_encode(
+      (const unsigned char *)&expose_params, sizeof(dt_iop_exposure_params_t), NULL);
 
-  return Napi::String::New(env, decoded_params);
+  return Napi::String::New(env, encoded_params);
 }

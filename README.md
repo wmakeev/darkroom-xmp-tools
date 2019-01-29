@@ -15,22 +15,22 @@ darkroom-xmp-tools
 
 ```js
 const assert = require('assert')
-const { decodeExposeParams, encodeExposeParams } = require('@wmakeev/darkroom-xmp-tools')
+const { decodeExposureParams, encodeExposureParams } = require('@wmakeev/darkroom-xmp-tools')
 
 const EXPOSE_PARAMS_BIN_STR = '0000000040a0093bd8ce374000004842000080c0'
 
-let paramsObj = decodeExposeParams(EXPOSE_PARAMS_BIN_STR)
+let paramsObj = decodeExposureParams(EXPOSE_PARAMS_BIN_STR)
 
-// "exposeParams": {
+// "exposureParams": {
 //   "mode": "EXPOSURE_MODE_MANUAL",
 //   "black": 0.0021000057458877563,
 //   "exposure": 2.871999740600586,
 //   "deflickerPercentile": 50,
 //   "deflickerTargetLevel": -4
 // }
-console.log('exposeParams:', JSON.stringify(paramsObj))
+console.log('exposureParams:', JSON.stringify(paramsObj))
 
-let encodedParamsStr = encodeExposeParams(paramsObj)
+let encodedParamsStr = encodeExposureParams(paramsObj)
 
 assert.strictEqual(encodedParamsStr, EXPOSE_PARAMS_BIN_STR)
 ```
@@ -43,11 +43,11 @@ assert.strictEqual(encodedParamsStr, EXPOSE_PARAMS_BIN_STR)
 
 - `encodeSharpenParams (params: SharpenParams): string`
 
-### Expose
+### Exposure
 
-- `decodeExposeParams (encoded: string): ExposeParams`
+- `decodeExposureParams (encoded: string): ExposureParams`
 
-- `encodeExposeParams (params: ExposeParams): string`
+- `encodeExposureParams (params: ExposureParams): string`
 
 ### Blend
 

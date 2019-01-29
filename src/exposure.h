@@ -17,8 +17,8 @@ struct dt_iop_exposure_params_t
   float deflicker_percentile, deflicker_target_level;
 };
 
-Napi::Value decode_expose_params(const Napi::CallbackInfo &info);
+Napi::Value decode_exposure_params(const Napi::CallbackInfo &info);
 
-Napi::Value encode_expose_params(const Napi::CallbackInfo &info);
+Napi::Value encode_exposure_params(const Napi::CallbackInfo &info);
 
 #endif

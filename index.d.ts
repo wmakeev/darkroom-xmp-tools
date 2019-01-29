@@ -17,9 +17,9 @@ declare interface LevelsParams {
 }
 
 /**
- * Expose params
+ * Exposure params
  */
-declare interface ExposeParams {
+declare interface ExposureParams {
   mode: 'EXPOSURE_MODE_MANUAL' | 'EXPOSURE_MODE_DEFLICKER'
   black: number
   exposure: number
@@ -126,13 +126,13 @@ declare var darkroomXmpTools: {
   decodeSharpenParams (encoded: string): SharpenParams
   encodeSharpenParams (params: SharpenParams): string
 
-  // Expose
-  ExposeMode: {
+  // Exposure
+  ExposureMode: {
     EXPOSURE_MODE_MANUAL: 'EXPOSURE_MODE_MANUAL',
     EXPOSURE_MODE_DEFLICKER: 'EXPOSURE_MODE_DEFLICKER'
   }
-  decodeExposeParams (encoded: string): ExposeParams
-  encodeExposeParams (params: ExposeParams): string
+  decodeExposureParams (encoded: string): ExposureParams
+  encodeExposureParams (params: ExposureParams): string
 
   // Blend
   decodeBlendParams (encoded: string): BlendParams

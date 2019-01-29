@@ -19,7 +19,7 @@ const EllipseFlags = {
   PROPORTIONAL: 1
 }
 
-const ExposeMode = {
+const ExposureMode = {
   EXPOSURE_MODE_MANUAL: 'EXPOSURE_MODE_MANUAL',
   EXPOSURE_MODE_DEFLICKER: 'EXPOSURE_MODE_DEFLICKER'
 }
@@ -59,7 +59,7 @@ function encodeGradientMask (mask) {
 Object.assign(module.exports, {
   MaskType,
   EllipseFlags,
-  ExposeMode,
+  ExposureMode,
   LevelsMode,
   decodeCircleMask,
   encodeCircleMask,

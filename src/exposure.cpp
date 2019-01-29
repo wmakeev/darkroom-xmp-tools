@@ -1,10 +1,10 @@
 #include <napi.h>
 #include <string>
 
-#include "expose.h"
+#include "exposure.h"
 #include "tools.h"
 
-Napi::Value decode_expose_params(const Napi::CallbackInfo &info)
+Napi::Value decode_exposure_params(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
 
@@ -63,7 +63,7 @@ Napi::Value decode_expose_params(const Napi::CallbackInfo &info)
   return params_obj;
 }
 
-Napi::Value encode_expose_params(const Napi::CallbackInfo &info)
+Napi::Value encode_exposure_params(const Napi::CallbackInfo &info)
 {
   Napi::Env env = info.Env();
 
@@ -79,57 +79,57 @@ Napi::Value encode_expose_params(const Napi::CallbackInfo &info)
     return env.Null();
   }
 
-  const Napi::Object expose_params_object = info[0].As<Napi::Object>();
+  const Napi::Object exposure_params_object = info[0].As<Napi::Object>();
 
-  dt_iop_exposure_params_t expose_params = {EXPOSURE_MODE_DEFLICKER, 0.0f, 0.0f, 50.0f, -4.0f};
+  dt_iop_exposure_params_t exposure_params = {EXPOSURE_MODE_DEFLICKER, 0.0f, 0.0f, 50.0f, -4.0f};
 
   // mode
-  if (expose_params_object.Has("mode")) {
-    std::string expose_mode_str =
-        expose_params_object.Get("mode").As<Napi::String>().Utf8Value();
+  if (exposure_params_object.Has("mode")) {
+    std::string exposure_mode_str =
+        exposure_params_object.Get("mode").As<Napi::String>().Utf8Value();
 
-    if (expose_mode_str == "EXPOSURE_MODE_MANUAL") {
-      expose_params.mode = EXPOSURE_MODE_MANUAL;
+    if (exposure_mode_str == "EXPOSURE_MODE_MANUAL") {
+      exposure_params.mode = EXPOSURE_MODE_MANUAL;
     }
-    else if (expose_mode_str == "EXPOSURE_MODE_DEFLICKER")
+    else if (exposure_mode_str == "EXPOSURE_MODE_DEFLICKER")
     {
-      expose_params.mode = EXPOSURE_MODE_DEFLICKER;
+      exposure_params.mode = EXPOSURE_MODE_DEFLICKER;
     }
     else
     {
-      Napi::TypeError::New(env, "Unknown expose mode name").ThrowAsJavaScriptException();
+      Napi::TypeError::New(env, "Unknown exposure mode name").ThrowAsJavaScriptException();
       return env.Null();
     }
   }
 
   // black
-  if (expose_params_object.Has("black"))
+  if (exposure_params_object.Has("black"))
   {
-    expose_params.black = expose_params_object.Get("black").ToNumber().FloatValue();
+    exposure_params.black = exposure_params_object.Get("black").ToNumber().FloatValue();
   }
 
   // exposure
-  if (expose_params_object.Has("exposure"))
+  if (exposure_params_object.Has("exposure"))
   {
-    expose_params.exposure = expose_params_object.Get("exposure").ToNumber().FloatValue();
+    exposure_params.exposure = exposure_params_object.Get("exposure").ToNumber().FloatValue();
   }
 
   // deflicker_percentile
-  if (expose_params_object.Has("deflickerPercentile"))
+  if (exposure_params_object.Has("deflickerPercentile"))
   {
-    expose_params.deflicker_percentile =
-        expose_params_object.Get("deflickerPercentile").ToNumber().FloatValue();
+    exposure_params.deflicker_percentile =
+        exposure_params_object.Get("deflickerPercentile").ToNumber().FloatValue();
   }
 
   // deflicker_target_level
-  if (expose_params_object.Has("deflickerTargetLevel"))
+  if (exposure_params_object.Has("deflickerTargetLevel"))
   {
-    expose_params.deflicker_target_level =
-        expose_params_object.Get("deflickerTargetLevel").ToNumber().FloatValue();
+    exposure_params.deflicker_target_level =
+        exposure_params_object.Get("deflickerTargetLevel").ToNumber().FloatValue();
   }
 
   const char *encoded_params = dt_exif_xmp_encode(
-      (const unsigned char *)&expose_params, sizeof(dt_iop_exposure_params_t), NULL);
+      (const unsigned char *)&exposure_params, sizeof(dt_iop_exposure_params_t), NULL);
 
   return Napi::String::New(env, encoded_params);
 }

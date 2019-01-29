@@ -9,4 +9,4 @@ paramsObj = decodeCircleMask(CIRCLE_MASK_BLOB)
 console.log('gradientMask:', JSON.stringify(paramsObj))
 
 encodedStr = encodeCircleMask(paramsObj)
-console.log('encoded exposeParams:', encodedStr)
+console.log('encoded exposureParams:', encodedStr)

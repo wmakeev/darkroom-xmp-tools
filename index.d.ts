@@ -1,3 +1,11 @@
+/**
+ * Sharpen params
+ */
+declare interface SharpenParams {
+  radius: number
+  amount: number
+  threshold: number
+}
 
 /**
  * Expose params
@@ -96,6 +104,10 @@ declare var darkroomXmpTools: {
   MaskType: MaskType
 
   EllipseFlags: EllipseFlags
+
+  // Sharpen
+  decodeSharpenParams (encoded: string): SharpenParams
+  encodeSharpenParams (params: SharpenParams): string
 
   // Expose
   decodeExposeParams (encoded: string): ExposeParams

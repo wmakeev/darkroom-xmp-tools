@@ -3,7 +3,7 @@ darkroom-xmp-tools
 
 [![npm](https://img.shields.io/npm/v/@wmakeev/darkroom-xmp-tools.svg?maxAge=1800&style=flat-square)](https://www.npmjs.com/package/@wmakeev/darkroom-xmp-tools)
 
-> Tools helps automize image processing with [darkroom-cli](https://www.darktable.org/usermanual/en/overview_chapter.html#darktable_cli_commandline_parameters)
+> Retrieve and update [darktable](https://www.darktable.org/) operations params stored in sidecar xmp files. This helps automize image processing with [darktable-cli](https://www.darktable.org/usermanual/en/overview_chapter.html#darktable_cli_commandline_parameters)
 
 ## Install
 
@@ -36,6 +36,12 @@ assert.strictEqual(encodedParamsStr, EXPOSE_PARAMS_BIN_STR)
 ```
 
 ## API
+
+### Sharpen
+
+- `decodeSharpenParams (encoded: string): SharpenParams`
+
+- `encodeSharpenParams (params: SharpenParams): string`
 
 ### Expose
 

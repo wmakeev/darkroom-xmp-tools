@@ -5,6 +5,7 @@
       "sources": [
         "src/init.cpp",
         "src/tools.cpp",
+        "src/sharpen.cpp",
         "src/expose.cpp",
         "src/blend.cpp",
         "src/clipping.cpp",

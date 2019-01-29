@@ -1,12 +1,15 @@
 {
   "name": "@wmakeev/darkroom-xmp-tools",
-  "version": "1.0.1",
-  "description": "Tools for manage darkroom sidecar xmp files",
+  "version": "1.1.0",
+  "description": "Retrieve and update darkroom operations params stored in sidecar xmp files",
   "main": "index.js",
   "types": "index.d.ts",
   "gypfile": true,
   "keywords": [
+    "darktable",
     "darkroom",
+    "lighttable",
+    "lightroom",
     "sidecar",
     "xmp",
     "tools",

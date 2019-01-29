@@ -1,3 +1,4 @@
+require('./sharpen.test')
 require('./expose.test')
 require('./blend.test')
 require('./clipping.test')

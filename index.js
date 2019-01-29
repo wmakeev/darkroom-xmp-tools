@@ -40,6 +40,12 @@ const ShadHiAlgo = {
   SHADHI_ALGO_BILATERAL: 'SHADHI_ALGO_BILATERAL'
 }
 
+const DefringeMode = {
+  MODE_GLOBAL_AVERAGE: 'MODE_GLOBAL_AVERAGE',
+  MODE_LOCAL_AVERAGE: 'MODE_LOCAL_AVERAGE',
+  MODE_STATIC: 'MODE_STATIC'
+}
+
 // Circle mask
 function decodeCircleMask (encodedMask) {
   return tools.decodeMaskPoints(MaskType.CIRCLE, 1, encodedMask)[0]
@@ -74,6 +80,7 @@ Object.assign(module.exports, {
   LevelsMode,
   GaussianOrder,
   ShadHiAlgo,
+  DefringeMode,
   decodeCircleMask,
   encodeCircleMask,
   decodeEllipseMask,

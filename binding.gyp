@@ -8,6 +8,7 @@
         "src/sharpen.cpp",
         "src/levels.cpp",
         "src/shadhi.cpp",
+        "src/defringe.cpp",
         "src/exposure.cpp",
         "src/blend.cpp",
         "src/clipping.cpp",

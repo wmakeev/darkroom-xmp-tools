@@ -1,6 +1,7 @@
 require('./sharpen.test')
 require('./levels.test')
 require('./shadhi.test')
+require('./defringe.test')
 require('./exposure.test')
 require('./blend.test')
 require('./clipping.test')

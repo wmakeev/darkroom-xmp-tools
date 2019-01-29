@@ -7,6 +7,7 @@
 #include "sharpen.h"
 #include "levels.h"
 #include "shadhi.h"
+#include "defringe.h"
 #include "exposure.h"
 #include "clipping.h"
 #include "masks.h"
@@ -39,6 +40,15 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set(
       Napi::String::New(env, "encodeShadhiParams"),
       Napi::Function::New(env, encode_shadhi_params));
+
+  // defringe
+  exports.Set(
+      Napi::String::New(env, "decodeDefringeParams"),
+      Napi::Function::New(env, decode_defringe_params));
+
+  exports.Set(
+      Napi::String::New(env, "encodeDefringeParams"),
+      Napi::Function::New(env, encode_defringe_params));
 
   // exposure
   exports.Set(

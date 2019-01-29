@@ -108,6 +108,24 @@ declare interface ClippingParams {
   ratioD: number
 }
 
+/**
+ * Defringe
+ */
+enum DefringeMode {
+  MODE_GLOBAL_AVERAGE = 'MODE_GLOBAL_AVERAGE',
+  MODE_LOCAL_AVERAGE = 'MODE_LOCAL_AVERAGE',
+  MODE_STATIC = 'MODE_STATIC'
+}
+
+declare interface DefringeParams {
+  radius: number
+  thresh: number
+  op_mode: DefringeMode
+}
+
+/**
+ * Masks
+ */
 declare enum MaskType {
   NONE = 0,
   CIRCLE = 1,
@@ -176,6 +194,11 @@ declare var darkroomXmpTools: {
   // Clipping
   decodeClippingParams (encoded: string): ClippingParams
   encodeClippingParams (params: ClippingParams): string
+
+  // Defringe
+  DefringeMode: typeof DefringeMode
+  decodeDefringeParams (encoded: string): DefringeParams
+  encodeDefringeParams (params: DefringeParams): string
 
   // Masks
   MaskType: typeof MaskType

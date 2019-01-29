@@ -5,6 +5,7 @@
 
 #include "blend.h"
 #include "sharpen.h"
+#include "levels.h"
 #include "expose.h"
 #include "clipping.h"
 #include "masks.h"
@@ -19,6 +20,15 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set(
       Napi::String::New(env, "encodeSharpenParams"),
       Napi::Function::New(env, encode_sharpen_params));
+
+  // levels
+  exports.Set(
+      Napi::String::New(env, "decodeLevelsParams"),
+      Napi::Function::New(env, decode_levels_params));
+
+  exports.Set(
+      Napi::String::New(env, "encodeLevelsParams"),
+      Napi::Function::New(env, encode_levels_params));
 
   // expose
   exports.Set(

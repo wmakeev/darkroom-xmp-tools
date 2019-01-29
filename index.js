@@ -19,6 +19,16 @@ const EllipseFlags = {
   PROPORTIONAL: 1
 }
 
+const ExposeMode = {
+  EXPOSURE_MODE_MANUAL: 'EXPOSURE_MODE_MANUAL',
+  EXPOSURE_MODE_DEFLICKER: 'EXPOSURE_MODE_DEFLICKER'
+}
+
+const LevelsMode = {
+  LEVELS_MODE_MANUAL: 'LEVELS_MODE_MANUAL',
+  LEVELS_MODE_AUTOMATIC: 'LEVELS_MODE_AUTOMATIC'
+}
+
 // Circle mask
 function decodeCircleMask (encodedMask) {
   return tools.decodeMaskPoints(MaskType.CIRCLE, 1, encodedMask)[0]
@@ -49,6 +59,8 @@ function encodeGradientMask (mask) {
 Object.assign(module.exports, {
   MaskType,
   EllipseFlags,
+  ExposeMode,
+  LevelsMode,
   decodeCircleMask,
   encodeCircleMask,
   decodeEllipseMask,

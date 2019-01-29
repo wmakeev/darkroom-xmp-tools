@@ -8,6 +8,15 @@ declare interface SharpenParams {
 }
 
 /**
+ * Levels params
+ */
+declare interface LevelsParams {
+  mode: 'LEVELS_MODE_MANUAL' | 'LEVELS_MODE_AUTOMATIC'
+  percentiles: [number, number, number]
+  levels: [number, number, number]
+}
+
+/**
  * Expose params
  */
 declare interface ExposeParams {
@@ -109,7 +118,19 @@ declare var darkroomXmpTools: {
   decodeSharpenParams (encoded: string): SharpenParams
   encodeSharpenParams (params: SharpenParams): string
 
+  // Levels
+  LevelsMode: {
+    LEVELS_MODE_MANUAL: 'LEVELS_MODE_MANUAL'
+    LEVELS_MODE_AUTOMATIC: 'LEVELS_MODE_AUTOMATIC'
+  }
+  decodeSharpenParams (encoded: string): SharpenParams
+  encodeSharpenParams (params: SharpenParams): string
+
   // Expose
+  ExposeMode: {
+    EXPOSURE_MODE_MANUAL: 'EXPOSURE_MODE_MANUAL',
+    EXPOSURE_MODE_DEFLICKER: 'EXPOSURE_MODE_DEFLICKER'
+  }
   decodeExposeParams (encoded: string): ExposeParams
   encodeExposeParams (params: ExposeParams): string
 

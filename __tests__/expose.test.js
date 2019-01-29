@@ -3,6 +3,12 @@
 const assert = require('assert')
 const sidecar = require('..')
 
+assert.equal(
+  sidecar.ExposeMode.EXPOSURE_MODE_DEFLICKER, 'EXPOSURE_MODE_DEFLICKER')
+
+assert.equal(
+  sidecar.ExposeMode.EXPOSURE_MODE_MANUAL, 'EXPOSURE_MODE_MANUAL')
+
 // exposeParams: {
 //   "mode": "EXPOSURE_MODE_MANUAL",
 //   "black": 0.0021000057458877563,

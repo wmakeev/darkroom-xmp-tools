@@ -29,6 +29,17 @@ const LevelsMode = {
   LEVELS_MODE_AUTOMATIC: 'LEVELS_MODE_AUTOMATIC'
 }
 
+const GaussianOrder = {
+  GAUSSIAN_ZERO: 'DT_IOP_GAUSSIAN_ZERO',
+  GAUSSIAN_ONE: 'DT_IOP_GAUSSIAN_ONE',
+  GAUSSIAN_TOW: 'DT_IOP_GAUSSIAN_TWO'
+}
+
+const ShadHiAlgo = {
+  SHADHI_ALGO_GAUSSIAN: 'SHADHI_ALGO_GAUSSIAN',
+  SHADHI_ALGO_BILATERAL: 'SHADHI_ALGO_BILATERAL'
+}
+
 // Circle mask
 function decodeCircleMask (encodedMask) {
   return tools.decodeMaskPoints(MaskType.CIRCLE, 1, encodedMask)[0]
@@ -61,6 +72,8 @@ Object.assign(module.exports, {
   EllipseFlags,
   ExposureMode,
   LevelsMode,
+  GaussianOrder,
+  ShadHiAlgo,
   decodeCircleMask,
   encodeCircleMask,
   decodeEllipseMask,

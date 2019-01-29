@@ -1,5 +1,5 @@
 /**
- * Sharpen params
+ * Sharpen
  */
 declare interface SharpenParams {
   radius: number
@@ -8,19 +8,58 @@ declare interface SharpenParams {
 }
 
 /**
- * Levels params
+ * Levels
  */
+declare enum LevelsMode {
+  LEVELS_MODE_MANUAL = 'LEVELS_MODE_MANUAL',
+  LEVELS_MODE_AUTOMATIC = 'LEVELS_MODE_AUTOMATIC'
+}
+
 declare interface LevelsParams {
-  mode: 'LEVELS_MODE_MANUAL' | 'LEVELS_MODE_AUTOMATIC'
+  mode: LevelsMode
   percentiles: [number, number, number]
   levels: [number, number, number]
 }
 
 /**
- * Exposure params
+ * Shadhi
  */
+declare enum GaussianOrder {
+  GAUSSIAN_ZERO = 'DT_IOP_GAUSSIAN_ZERO',
+  GAUSSIAN_ONE = 'DT_IOP_GAUSSIAN_ONE',
+  GAUSSIAN_TOW = 'DT_IOP_GAUSSIAN_TWO'
+}
+
+declare enum ShadHiAlgo {
+  SHADHI_ALGO_GAUSSIAN = 'SHADHI_ALGO_GAUSSIAN',
+  SHADHI_ALGO_BILATERAL = 'SHADHI_ALGO_BILATERAL'
+}
+
+declare interface ShadhiParams {
+  order: GaussianOrder
+  radius: number
+  shadows: number
+  shadows: number
+  highlights: number
+  reserved2: number
+  compress: number
+  shadows_ccorrect: number
+  highlights_ccorrect: number
+  flags: number
+  low_approximation: number
+  shadhi_algo: ShadHiAlgo
+}
+
+/**
+ * Exposure
+ */
+declare enum ExposureMode {
+  EXPOSURE_MODE_MANUAL = 'EXPOSURE_MODE_MANUAL',
+  EXPOSURE_MODE_DEFLICKER = 'EXPOSURE_MODE_DEFLICKER'
+}
+
 declare interface ExposureParams {
-  mode: 'EXPOSURE_MODE_MANUAL' | 'EXPOSURE_MODE_DEFLICKER'
+  mode: ExposureMode
   black: number
   exposure: number
   deflickerPercentile: number
@@ -28,7 +67,7 @@ declare interface ExposureParams {
 }
 
 /**
- * Blend params
+ * Blend
  */
 declare interface BlendParams {
   maskMode: number
@@ -43,7 +82,7 @@ declare interface BlendParams {
 }
 
 /**
- * Clipping params
+ * Clipping
  */
 declare interface ClippingParams {
   angle: number
@@ -110,27 +149,23 @@ declare interface MaskGradientPoint extends MaskPoint {
 }
 
 declare var darkroomXmpTools: {
-  MaskType: MaskType
-
-  EllipseFlags: EllipseFlags
-
   // Sharpen
   decodeSharpenParams (encoded: string): SharpenParams
   encodeSharpenParams (params: SharpenParams): string
 
   // Levels
-  LevelsMode: {
-    LEVELS_MODE_MANUAL: 'LEVELS_MODE_MANUAL'
-    LEVELS_MODE_AUTOMATIC: 'LEVELS_MODE_AUTOMATIC'
-  }
-  decodeSharpenParams (encoded: string): SharpenParams
-  encodeSharpenParams (params: SharpenParams): string
+  LevelsMode: typeof LevelsMode
+  decodeSharpenParams (encoded: string): LevelsParams
+  encodeSharpenParams (params: LevelsParams): string
+
+  // Shadhi
+  GaussianOrder: typeof GaussianOrder
+  ShadHiAlgo: typeof ShadHiAlgo
+  decodeShadhiParams (encoded: string): ShadhiParams
+  encodeShadhiParams (params: ShadhiParams): string
 
   // Exposure
-  ExposureMode: {
-    EXPOSURE_MODE_MANUAL: 'EXPOSURE_MODE_MANUAL',
-    EXPOSURE_MODE_DEFLICKER: 'EXPOSURE_MODE_DEFLICKER'
-  }
+  ExposureMode: typeof ExposureMode
   decodeExposureParams (encoded: string): ExposureParams
   encodeExposureParams (params: ExposureParams): string
 
@@ -143,6 +178,8 @@ declare var darkroomXmpTools: {
   encodeClippingParams (params: ClippingParams): string
 
   // Masks
+  MaskType: typeof MaskType
+
   decodeMaskPoints<MaskPoint> (maskType: string, numberPoints: number, encodedPoints: string): Array<MaskPoint>
   encodeMaskPoints<MaskPoint> (maskType: string, points: Array<MaskPoint>): string
 
@@ -151,6 +188,7 @@ declare var darkroomXmpTools: {
   encodeCircleMask (mask: MaskCirclePoint): string
 
   // - ellipse mask
+  EllipseFlags: typeof EllipseFlags
   decodeEllipseMask (encodedMask: string): MaskEllipsePoint
   encodeEllipseMask (mask: MaskEllipsePoint): string
 

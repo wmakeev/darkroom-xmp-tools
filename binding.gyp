@@ -7,6 +7,7 @@
         "src/tools.cpp",
         "src/sharpen.cpp",
         "src/levels.cpp",
+        "src/shadhi.cpp",
         "src/exposure.cpp",
         "src/blend.cpp",
         "src/clipping.cpp",

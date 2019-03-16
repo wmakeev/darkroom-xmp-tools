@@ -202,9 +202,9 @@ declare interface MaskGradientPoint extends MaskPoint {
 }
 
 // Errors
-declare interface CustomError extends Error {}
+declare class CustomError extends Error {}
 
-declare interface UnknownOperationError extends CustomError {
+declare class UnknownOperationError extends CustomError {
   operation: string
 }
 

@@ -2,10 +2,12 @@
 
 const assert = require('assert')
 const sidecar = require('..')
+const testOperation = require('./testOperation')
+
+const OPERATION = 'levels'
 
 assert.equal(
   sidecar.LevelsMode.LEVELS_MODE_AUTOMATIC, 'LEVELS_MODE_AUTOMATIC')
-
 assert.equal(
   sidecar.LevelsMode.LEVELS_MODE_MANUAL, 'LEVELS_MODE_MANUAL')
 
@@ -16,10 +18,4 @@ assert.equal(
 // }
 const LEVELS_PARAMS_BIN_STR = '0000000000000000000048420000c842d39e483c0da4f73e9181743f'
 
-let paramsObj = sidecar.decodeLevelsParams(LEVELS_PARAMS_BIN_STR)
-// console.log('levelsParams:', JSON.stringify(paramsObj))
-
-let encodedParamsStr = sidecar.encodeLevelsParams(paramsObj)
-
-assert.strictEqual(encodedParamsStr, LEVELS_PARAMS_BIN_STR)
-console.log('levels test - OK')
+testOperation(OPERATION, LEVELS_PARAMS_BIN_STR)

@@ -1,7 +1,8 @@
 'use strict'
 
-const assert = require('assert')
-const sidecar = require('..')
+const testOperation = require('./testOperation')
+
+const OPERATION = 'blend'
 
 // blendParams: {
 //   "maskMode": 3,
@@ -22,11 +23,4 @@ const sidecar = require('..')
 
 const BLEND_PARAMS_GZIP_STR = 'gz08eJxjZmBgkGAAgRNOjEBy0e670SDe2TM7nBhwggZ7CB5ZfAB1kB4v'
 
-let paramsObj = sidecar.decodeBlendParams(BLEND_PARAMS_GZIP_STR)
-// console.log('blendParams:', JSON.stringify(paramsObj))
-
-let encodedParamsStr = sidecar.encodeBlendParams(paramsObj)
-// console.log('encoded blendParams:', encodedParamsStr)
-
-assert.strictEqual(encodedParamsStr, BLEND_PARAMS_GZIP_STR)
-console.log('blend test - OK')
+testOperation(OPERATION, BLEND_PARAMS_GZIP_STR)

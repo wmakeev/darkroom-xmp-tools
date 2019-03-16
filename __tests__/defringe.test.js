@@ -2,6 +2,9 @@
 
 const assert = require('assert')
 const sidecar = require('..')
+const testOperation = require('./testOperation')
+
+const OPERATION = 'defringe'
 
 assert.equal(
   sidecar.DefringeMode.MODE_GLOBAL_AVERAGE, 'MODE_GLOBAL_AVERAGE')
@@ -17,10 +20,4 @@ assert.equal(
 // }
 const DEFRINGE_PARAMS_BIN_STR = '000080400000a04100000000'
 
-let paramsObj = sidecar.decodeDefringeParams(DEFRINGE_PARAMS_BIN_STR)
-// console.log('defringeParams:', JSON.stringify(paramsObj))
-
-let encodedParamsStr = sidecar.encodeDefringeParams(paramsObj)
-
-assert.strictEqual(encodedParamsStr, DEFRINGE_PARAMS_BIN_STR)
-console.log('defringe test - OK')
+testOperation(OPERATION, DEFRINGE_PARAMS_BIN_STR)

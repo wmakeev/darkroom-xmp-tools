@@ -2,6 +2,9 @@
 
 const assert = require('assert')
 const sidecar = require('..')
+const testOperation = require('./testOperation')
+
+const OPERATION = 'shadhi'
 
 assert.equal(
   sidecar.GaussianOrder.GAUSSIAN_ZERO, 'DT_IOP_GAUSSIAN_ZERO')
@@ -30,10 +33,4 @@ assert.equal(
 // }
 const SHADHI_PARAMS_BIN_STR = '000000000000c842d8a35c41000000000000000000000000000048420000c842000048427f000000bd37863500000000'
 
-let paramsObj = sidecar.decodeShadhiParams(SHADHI_PARAMS_BIN_STR)
-// console.log('shadhiParams:', JSON.stringify(paramsObj))
-
-let encodedParamsStr = sidecar.encodeShadhiParams(paramsObj)
-
-assert.strictEqual(encodedParamsStr, SHADHI_PARAMS_BIN_STR)
-console.log('shadhi test - OK')
+testOperation(OPERATION, SHADHI_PARAMS_BIN_STR)

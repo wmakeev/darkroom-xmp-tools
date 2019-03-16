@@ -9,8 +9,10 @@
 #include "shadhi.h"
 #include "defringe.h"
 #include "exposure.h"
+#include "basecurve.h"
 #include "clipping.h"
 #include "masks.h"
+#include "flip.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
@@ -50,6 +52,15 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
       Napi::String::New(env, "encodeDefringeParams"),
       Napi::Function::New(env, encode_defringe_params));
 
+  // basecurve
+  exports.Set(
+      Napi::String::New(env, "decodeBasecurveParams"),
+      Napi::Function::New(env, decode_basecurve_params));
+
+  exports.Set(
+      Napi::String::New(env, "encodeBasecurveParams"),
+      Napi::Function::New(env, encode_basecurve_params));
+
   // exposure
   exports.Set(
       Napi::String::New(env, "decodeExposureParams"),
@@ -76,6 +87,15 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set(
       Napi::String::New(env, "encodeClippingParams"),
       Napi::Function::New(env, encode_clipping_params));
+
+  // orientation
+  exports.Set(
+      Napi::String::New(env, "decodeFlipParams"),
+      Napi::Function::New(env, decode_flip_params));
+
+  exports.Set(
+      Napi::String::New(env, "encodeFlipParams"),
+      Napi::Function::New(env, encode_flip_params));
 
   // mask
   exports.Set(

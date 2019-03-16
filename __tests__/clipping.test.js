@@ -1,7 +1,8 @@
 'use strict'
 
-const assert = require('assert')
-const sidecar = require('..')
+const testOperation = require('./testOperation')
+
+const OPERATION = 'clipping'
 
 // clippingParams: {
 //   "angle": 0,
@@ -26,14 +27,6 @@ const sidecar = require('..')
 //   "ratioD": 0
 // }
 
-// const CLIPPING_PARAMS_BIN_STR = '00000000761d053e8349f53e8260653f2a506b3f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000000000000000000000000000'
 const CLIPPING_PARAMS_BIN_STR = '000000001c1ccc3d1c644d3e0000803fc482663f0000000000000000cdcc4c3ecdcc4c3ecdcc4c3fcdcc4c3ecdcc4c3fcdcc4c3fcdcc4c3ecdcc4c3f000000000000000000000000010000000000000000000000'
 
-let paramsObj = sidecar.decodeClippingParams(CLIPPING_PARAMS_BIN_STR)
-// console.log('clippingParams:', JSON.stringify(paramsObj))
-
-let encodedParamsStr = sidecar.encodeClippingParams(paramsObj)
-// console.log('encoded clippingParams:', encodedParamsStr)
-
-assert.strictEqual(encodedParamsStr, CLIPPING_PARAMS_BIN_STR)
-console.log('clipping test - OK')
+testOperation(OPERATION, CLIPPING_PARAMS_BIN_STR)

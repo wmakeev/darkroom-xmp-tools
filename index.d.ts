@@ -1,29 +1,25 @@
-/**
- * Sharpen
- */
-declare interface SharpenParams {
+declare interface Params {}
+
+// Sharpen
+declare interface SharpenParams extends Params {
   radius: number
   amount: number
   threshold: number
 }
 
-/**
- * Levels
- */
+// Levels
 declare enum LevelsMode {
   LEVELS_MODE_MANUAL = 'LEVELS_MODE_MANUAL',
   LEVELS_MODE_AUTOMATIC = 'LEVELS_MODE_AUTOMATIC'
 }
 
-declare interface LevelsParams {
+declare interface LevelsParams extends Params {
   mode: LevelsMode
   percentiles: [number, number, number]
   levels: [number, number, number]
 }
 
-/**
- * Shadhi
- */
+// Shadhi
 declare enum GaussianOrder {
   GAUSSIAN_ZERO = 'DT_IOP_GAUSSIAN_ZERO',
   GAUSSIAN_ONE = 'DT_IOP_GAUSSIAN_ONE',
@@ -35,11 +31,11 @@ declare enum ShadHiAlgo {
   SHADHI_ALGO_BILATERAL = 'SHADHI_ALGO_BILATERAL'
 }
 
-declare interface ShadhiParams {
+declare interface ShadhiParams extends Params {
   order: GaussianOrder
   radius: number
   shadows: number
-  shadows: number
+  whitepoint: number
   highlights: number
   reserved2: number
   compress: number
@@ -50,15 +46,13 @@ declare interface ShadhiParams {
   shadhi_algo: ShadHiAlgo
 }
 
-/**
- * Exposure
- */
+// Exposure
 declare enum ExposureMode {
   EXPOSURE_MODE_MANUAL = 'EXPOSURE_MODE_MANUAL',
   EXPOSURE_MODE_DEFLICKER = 'EXPOSURE_MODE_DEFLICKER'
 }
 
-declare interface ExposureParams {
+declare interface ExposureParams extends Params {
   mode: ExposureMode
   black: number
   exposure: number
@@ -66,10 +60,40 @@ declare interface ExposureParams {
   deflickerTargetLevel: number
 }
 
-/**
- * Blend
- */
-declare interface BlendParams {
+// Basecurve
+declare enum BasecurveType {
+  CUBIC_SPLINE = 0,
+  CATMULL_ROM = 1,
+  MONOTONE_HERMITE = 2
+}
+
+declare interface BasecurveNode {
+  x: number
+  y: number
+}
+
+declare interface BasecurveParams extends Params {
+  /** curve (the other two are reserved) */
+  basecurve: [
+    Array<BasecurveNode>,
+    Array<BasecurveNode>,
+    Array<BasecurveNode>
+  ]
+  basecurve_nodes: [number, number, number]
+  basecurve_type: [BasecurveType, BasecurveType, BasecurveType]
+
+  /** number of exposure fusion steps */
+  exposure_fusion: number
+
+  /** number of stops between fusion images */
+  exposure_stops: number
+
+  /** whether to do exposure-fusion with over or under-exposure */
+  exposure_bias: number
+}
+
+// Blend
+declare interface BlendParams extends Params {
   maskMode: number
   blendMode: number
   maskId: number
@@ -81,10 +105,8 @@ declare interface BlendParams {
   blendifParameters: Array<number>
 }
 
-/**
- * Clipping
- */
-declare interface ClippingParams {
+// Clipping
+declare interface ClippingParams extends Params {
   angle: number
   cx: number
   cy: number
@@ -108,24 +130,37 @@ declare interface ClippingParams {
   ratioD: number
 }
 
-/**
- * Defringe
- */
-enum DefringeMode {
+// Defringe
+declare enum DefringeMode {
   MODE_GLOBAL_AVERAGE = 'MODE_GLOBAL_AVERAGE',
   MODE_LOCAL_AVERAGE = 'MODE_LOCAL_AVERAGE',
   MODE_STATIC = 'MODE_STATIC'
 }
 
-declare interface DefringeParams {
+declare interface DefringeParams extends Params {
   radius: number
   thresh: number
   op_mode: DefringeMode
 }
 
-/**
- * Masks
- */
+// Orientation
+declare enum ImageOrientation {
+  ORIENTATION_NULL = 'ORIENTATION_NULL',
+  ORIENTATION_NONE = 'ORIENTATION_NONE',
+  ORIENTATION_FLIP_Y = 'ORIENTATION_FLIP_Y',
+  ORIENTATION_FLIP_X = 'ORIENTATION_FLIP_X',
+  ORIENTATION_SWAP_XY = 'ORIENTATION_SWAP_XY',
+  ORIENTATION_ROTATE_180_DEG = 'ORIENTATION_ROTATE_180_DEG',
+  ORIENTATION_ROTATE_CCW_90_DEG = 'ORIENTATION_ROTATE_CCW_90_DEG',
+  ORIENTATION_ROTATE_CW_90_DEG = 'ORIENTATION_ROTATE_CW_90_DEG',
+  ORIENTATION_421 = 'ORIENTATION_421'
+}
+
+declare interface FlipParams extends Params {
+  orientation: ImageOrientation
+}
+
+// Masks
 declare enum MaskType {
   NONE = 0,
   CIRCLE = 1,
@@ -166,6 +201,17 @@ declare interface MaskGradientPoint extends MaskPoint {
   steepness: number
 }
 
+// Errors
+declare interface CustomError extends Error {}
+
+declare interface UnknownOperationError extends CustomError {
+  operation: string
+}
+
+// declare type operation = 'sharpen' | 'levels' | 'shadhi' | 'exposure' |
+//   'blend' | 'clipping' | 'defringe' | 'flip' | 'basecurve'
+
+// Export
 declare var darkroomXmpTools: {
   // Sharpen
   decodeSharpenParams (encoded: string): SharpenParams
@@ -173,8 +219,8 @@ declare var darkroomXmpTools: {
 
   // Levels
   LevelsMode: typeof LevelsMode
-  decodeSharpenParams (encoded: string): LevelsParams
-  encodeSharpenParams (params: LevelsParams): string
+  decodeLevelsParams (encoded: string): LevelsParams
+  encodeLevelsParams (params: LevelsParams): string
 
   // Shadhi
   GaussianOrder: typeof GaussianOrder
@@ -200,9 +246,18 @@ declare var darkroomXmpTools: {
   decodeDefringeParams (encoded: string): DefringeParams
   encodeDefringeParams (params: DefringeParams): string
 
+  // Flip
+  ImageOrientation: typeof ImageOrientation
+  decodeFlipParams (encoded: string): FlipParams
+  encodeFlipParams (params: FlipParams): string
+
+  // Basecurve
+  BasecurveType: typeof BasecurveType
+  decodeBasecurveParams (encoded: string): BasecurveParams
+  encodeBasecurveParams (params: BasecurveParams): string
+
   // Masks
   MaskType: typeof MaskType
-
   decodeMaskPoints<MaskPoint> (maskType: string, numberPoints: number, encodedPoints: string): Array<MaskPoint>
   encodeMaskPoints<MaskPoint> (maskType: string, points: Array<MaskPoint>): string
 
@@ -218,6 +273,23 @@ declare var darkroomXmpTools: {
   // - gradient mask
   decodeGradientMask (encodedMask: string): MaskGradientPoint
   encodeGradientMask (mask: MaskGradientPoint): string
+
+  // Helpers
+  decodeParams (operation: 'sharpen', encodedParams: string): SharpenParams
+  decodeParams (operation: 'levels', encodedParams: string): LevelsParams
+  decodeParams (operation: 'shadhi', encodedParams: string): ShadhiParams
+  decodeParams (operation: 'exposure', encodedParams: string): ExposureParams
+  decodeParams (operation: 'blend', encodedParams: string): BlendParams
+  decodeParams (operation: 'clipping', encodedParams: string): ClippingParams
+  decodeParams (operation: 'defringe', encodedParams: string): DefringeParams
+  decodeParams (operation: 'flip', encodedParams: string): FlipParams
+  decodeParams (operation: 'basecurve', encodedParams: string): BasecurveParams
+  decodeParams<T> (operation: string, encodedParams: string): T
+
+  encodeParams (operation: string, params: Params): string
+
+  // Errors
+  UnknownOperationError: typeof UnknownOperationError
 }
 
 export = darkroomXmpTools

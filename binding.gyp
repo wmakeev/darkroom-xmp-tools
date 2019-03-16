@@ -10,9 +10,11 @@
         "src/shadhi.cpp",
         "src/defringe.cpp",
         "src/exposure.cpp",
+        "src/basecurve.cpp",
         "src/blend.cpp",
         "src/clipping.cpp",
-        "src/masks.cpp"
+        "src/masks.cpp",
+        "src/flip.cpp"
       ],
       "include_dirs" : [
         "<!@(node -p \"require('node-addon-api').include\")"

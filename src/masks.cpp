@@ -40,7 +40,9 @@ Napi::Value decode_mask_points(const Napi::CallbackInfo &info)
         .ThrowAsJavaScriptException();
     return env.Null();
   }
-  const char *encoded_points_blob = info[2].ToString().Utf8Value().c_str();
+
+  std::string encoded_points_blob_str = info[2].ToString().Utf8Value();
+  const char *encoded_points_blob = encoded_points_blob_str.c_str();
 
   unsigned char *points_blob = dt_exif_xmp_decode(
       encoded_points_blob,

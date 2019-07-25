@@ -1,12 +1,12 @@
 // const assert = require('assert')
-const { decodeCircleMask, encodeCircleMask } = require('../build/Debug/darkroom-xmp-tools.node')
+const { decodeSharpenParams, encodeSharpenParams } =
+  // require('bindings')('darkroom-xmp-tools')
+  require('../build/Debug/darkroom-xmp-tools.node')
 
-let paramsObj, encodedStr
+const SHARPEN_PARAMS_BIN_STR = '000000400000003f0000003f'
 
-const CIRCLE_MASK_BLOB = '13b50a3f1857f73eb6b2073e07288f3d'
+const paramsObj = decodeSharpenParams(SHARPEN_PARAMS_BIN_STR)
+console.log('decodeParams:', JSON.stringify(paramsObj))
 
-paramsObj = decodeCircleMask(CIRCLE_MASK_BLOB)
-console.log('gradientMask:', JSON.stringify(paramsObj))
-
-encodedStr = encodeCircleMask(paramsObj)
-console.log('encoded exposureParams:', encodedStr)
+const encodedStr = encodeSharpenParams(paramsObj)
+console.log('encodeParams:', encodedStr)

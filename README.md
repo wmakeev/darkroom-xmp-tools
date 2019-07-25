@@ -7,7 +7,7 @@ darkroom-xmp-tools
 
 ## Install
 
-> Tested on MacOS 10.14, NodeJs v9.2.0
+> Tested on: MacOS (node v9.2.0) and Linux Mint (node v10.16)
 
 `$ npm install @wmakeev/darkroom-xmp-tools`
 
@@ -166,11 +166,18 @@ assert.strictEqual(encodedParamsStr, EXPOSURE_PARAMS_BIN_STR)
 
 - `encodeGradientMask (mask: MaskGradientPoint): string`
 
+## Dependencies
+
+- GLib ([How to install GLib 2.0 on Ubuntu 17.04](https://www.linuxhelp.com/how-to-install-glib-2-0-on-ubuntu-17-04))
+
 ## TODO
 
-- Test on Linux and Windows
+- Test on Windows
 - Improve errors message and arguments validation
 
 ## Changes
 
-
+### 2.0.1
+  - Add Linux build (Linux Mint)
+  - Add some arguments validation
+  - Fix some bugs

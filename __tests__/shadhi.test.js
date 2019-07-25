@@ -6,16 +6,16 @@ const testOperation = require('./testOperation')
 
 const OPERATION = 'shadhi'
 
-assert.equal(
+assert.strictEqual(
   sidecar.GaussianOrder.GAUSSIAN_ZERO, 'DT_IOP_GAUSSIAN_ZERO')
-assert.equal(
+assert.strictEqual(
   sidecar.GaussianOrder.GAUSSIAN_ONE, 'DT_IOP_GAUSSIAN_ONE')
-assert.equal(
+assert.strictEqual(
   sidecar.GaussianOrder.GAUSSIAN_TOW, 'DT_IOP_GAUSSIAN_TWO')
 
-assert.equal(
+assert.strictEqual(
   sidecar.ShadHiAlgo.SHADHI_ALGO_GAUSSIAN, 'SHADHI_ALGO_GAUSSIAN')
-assert.equal(
+assert.strictEqual(
   sidecar.ShadHiAlgo.SHADHI_ALGO_BILATERAL, 'SHADHI_ALGO_BILATERAL')
 
 // shadhiParams: {

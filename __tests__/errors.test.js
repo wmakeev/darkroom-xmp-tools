@@ -8,7 +8,7 @@ try {
   assert.fail('decodeParams should throw error')
 } catch (err) {
   assert.ok(err instanceof UnknownOperationError)
-  assert.equal(err.message, "Unknown operation 'foo'")
+  assert.strictEqual(err.message, "Unknown operation 'foo'")
 }
 
 try {
@@ -16,5 +16,5 @@ try {
   assert.fail('encodeParams should throw error')
 } catch (err) {
   assert.ok(err instanceof UnknownOperationError)
-  assert.equal(err.message, "Unknown operation 'foo'")
+  assert.strictEqual(err.message, "Unknown operation 'foo'")
 }

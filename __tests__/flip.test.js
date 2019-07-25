@@ -6,31 +6,39 @@ const testOperation = require('./testOperation')
 
 const OPERATION = 'flip'
 
-assert.equal(
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_NULL,
   'ORIENTATION_NULL')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_NONE,
   'ORIENTATION_NONE')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_FLIP_Y,
   'ORIENTATION_FLIP_Y')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_FLIP_X,
   'ORIENTATION_FLIP_X')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_SWAP_XY,
   'ORIENTATION_SWAP_XY')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_ROTATE_180_DEG,
   'ORIENTATION_ROTATE_180_DEG')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_ROTATE_CCW_90_DEG,
   'ORIENTATION_ROTATE_CCW_90_DEG')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_ROTATE_CW_90_DEG,
   'ORIENTATION_ROTATE_CW_90_DEG')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ImageOrientation.ORIENTATION_421,
   'ORIENTATION_421')
 

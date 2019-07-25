@@ -6,9 +6,9 @@ const testOperation = require('./testOperation')
 
 const OPERATION = 'basecurve'
 
-assert.equal(sidecar.BasecurveType.CUBIC_SPLINE, 0)
-assert.equal(sidecar.BasecurveType.CATMULL_ROM, 1)
-assert.equal(sidecar.BasecurveType.MONOTONE_HERMITE, 2)
+assert.strictEqual(sidecar.BasecurveType.CUBIC_SPLINE, 0)
+assert.strictEqual(sidecar.BasecurveType.CATMULL_ROM, 1)
+assert.strictEqual(sidecar.BasecurveType.MONOTONE_HERMITE, 2)
 
 // basecurveParams: {
 //   "basecurve_nodes": [6,0,0],

@@ -1,37 +1,37 @@
-declare interface Params {}
+export interface Params {}
 
 // Sharpen
-declare interface SharpenParams extends Params {
+export interface SharpenParams extends Params {
   radius: number
   amount: number
   threshold: number
 }
 
 // Levels
-declare enum LevelsMode {
+export enum LevelsMode {
   LEVELS_MODE_MANUAL = 'LEVELS_MODE_MANUAL',
   LEVELS_MODE_AUTOMATIC = 'LEVELS_MODE_AUTOMATIC'
 }
 
-declare interface LevelsParams extends Params {
+export interface LevelsParams extends Params {
   mode: LevelsMode
   percentiles: [number, number, number]
   levels: [number, number, number]
 }
 
 // Shadhi
-declare enum GaussianOrder {
+export enum GaussianOrder {
   GAUSSIAN_ZERO = 'DT_IOP_GAUSSIAN_ZERO',
   GAUSSIAN_ONE = 'DT_IOP_GAUSSIAN_ONE',
   GAUSSIAN_TOW = 'DT_IOP_GAUSSIAN_TWO'
 }
 
-declare enum ShadHiAlgo {
+export enum ShadHiAlgo {
   SHADHI_ALGO_GAUSSIAN = 'SHADHI_ALGO_GAUSSIAN',
   SHADHI_ALGO_BILATERAL = 'SHADHI_ALGO_BILATERAL'
 }
 
-declare interface ShadhiParams extends Params {
+export interface ShadhiParams extends Params {
   order: GaussianOrder
   radius: number
   shadows: number
@@ -47,12 +47,12 @@ declare interface ShadhiParams extends Params {
 }
 
 // Exposure
-declare enum ExposureMode {
+export enum ExposureMode {
   EXPOSURE_MODE_MANUAL = 'EXPOSURE_MODE_MANUAL',
   EXPOSURE_MODE_DEFLICKER = 'EXPOSURE_MODE_DEFLICKER'
 }
 
-declare interface ExposureParams extends Params {
+export interface ExposureParams extends Params {
   mode: ExposureMode
   black: number
   exposure: number
@@ -61,18 +61,18 @@ declare interface ExposureParams extends Params {
 }
 
 // Basecurve
-declare enum BasecurveType {
+export enum BasecurveType {
   CUBIC_SPLINE = 0,
   CATMULL_ROM = 1,
   MONOTONE_HERMITE = 2
 }
 
-declare interface BasecurveNode {
+export interface BasecurveNode {
   x: number
   y: number
 }
 
-declare interface BasecurveParams extends Params {
+export interface BasecurveParams extends Params {
   /** curve (the other two are reserved) */
   basecurve: [
     Array<BasecurveNode>,
@@ -93,7 +93,7 @@ declare interface BasecurveParams extends Params {
 }
 
 // Blend
-declare interface BlendParams extends Params {
+export interface BlendParams extends Params {
   maskMode: number
   blendMode: number
   maskId: number
@@ -106,7 +106,7 @@ declare interface BlendParams extends Params {
 }
 
 // Clipping
-declare interface ClippingParams extends Params {
+export interface ClippingParams extends Params {
   angle: number
   cx: number
   cy: number
@@ -131,20 +131,20 @@ declare interface ClippingParams extends Params {
 }
 
 // Defringe
-declare enum DefringeMode {
+export enum DefringeMode {
   MODE_GLOBAL_AVERAGE = 'MODE_GLOBAL_AVERAGE',
   MODE_LOCAL_AVERAGE = 'MODE_LOCAL_AVERAGE',
   MODE_STATIC = 'MODE_STATIC'
 }
 
-declare interface DefringeParams extends Params {
+export interface DefringeParams extends Params {
   radius: number
   thresh: number
   op_mode: DefringeMode
 }
 
 // Orientation
-declare enum ImageOrientation {
+export enum ImageOrientation {
   ORIENTATION_NULL = 'ORIENTATION_NULL',
   ORIENTATION_NONE = 'ORIENTATION_NONE',
   ORIENTATION_FLIP_Y = 'ORIENTATION_FLIP_Y',
@@ -156,12 +156,12 @@ declare enum ImageOrientation {
   ORIENTATION_421 = 'ORIENTATION_421'
 }
 
-declare interface FlipParams extends Params {
+export interface FlipParams extends Params {
   orientation: ImageOrientation
 }
 
 // Masks
-declare enum MaskType {
+export enum MaskType {
   NONE = 0,
   CIRCLE = 1,
   PATH = 2,
@@ -173,20 +173,20 @@ declare enum MaskType {
   NON_CLONE = 128
 }
 
-declare enum EllipseFlags {
+export enum EllipseFlags {
   EQUIDISTANT = 0,
   PROPORTIONAL = 1
 }
 
-declare interface MaskPoint {}
+export interface MaskPoint {}
 
-declare interface MaskCirclePoint extends MaskPoint {
+export interface MaskCirclePoint extends MaskPoint {
   center: [number, number]
   radius: number,
   border: number
 }
 
-declare interface MaskEllipsePoint extends MaskPoint {
+export interface MaskEllipsePoint extends MaskPoint {
   center: [number, number]
   radius: [number, number]
   rotation: number
@@ -194,7 +194,7 @@ declare interface MaskEllipsePoint extends MaskPoint {
   flags: EllipseFlags
 }
 
-declare interface MaskGradientPoint extends MaskPoint {
+export interface MaskGradientPoint extends MaskPoint {
   anchor: [number, number]
   rotation: number
   compression: number
@@ -202,94 +202,74 @@ declare interface MaskGradientPoint extends MaskPoint {
 }
 
 // Errors
-declare class CustomError extends Error {}
+export class CustomError extends Error {}
 
-declare class UnknownOperationError extends CustomError {
+export class UnknownOperationError extends CustomError {
   operation: string
 }
 
-// declare type operation = 'sharpen' | 'levels' | 'shadhi' | 'exposure' |
-//   'blend' | 'clipping' | 'defringe' | 'flip' | 'basecurve'
+// Sharpen
+export function decodeSharpenParams(encoded: string): SharpenParams
+export function encodeSharpenParams(params: SharpenParams): string
 
-// Export
-declare var darkroomXmpTools: {
-  // Sharpen
-  decodeSharpenParams (encoded: string): SharpenParams
-  encodeSharpenParams (params: SharpenParams): string
+// Levels
+export function decodeLevelsParams(encoded: string): LevelsParams
+export function encodeLevelsParams(params: LevelsParams): string
 
-  // Levels
-  LevelsMode: typeof LevelsMode
-  decodeLevelsParams (encoded: string): LevelsParams
-  encodeLevelsParams (params: LevelsParams): string
+// Shadhi
+export function decodeShadhiParams(encoded: string): ShadhiParams
+export function encodeShadhiParams(params: ShadhiParams): string
 
-  // Shadhi
-  GaussianOrder: typeof GaussianOrder
-  ShadHiAlgo: typeof ShadHiAlgo
-  decodeShadhiParams (encoded: string): ShadhiParams
-  encodeShadhiParams (params: ShadhiParams): string
+// Exposure
+export function decodeExposureParams(encoded: string): ExposureParams
+export function encodeExposureParams(params: ExposureParams): string
 
-  // Exposure
-  ExposureMode: typeof ExposureMode
-  decodeExposureParams (encoded: string): ExposureParams
-  encodeExposureParams (params: ExposureParams): string
+// Blend
+export function decodeBlendParams(encoded: string): BlendParams
+export function encodeBlendParams(params: BlendParams): string
 
-  // Blend
-  decodeBlendParams (encoded: string): BlendParams
-  encodeBlendParams (params: BlendParams): string
+// Clipping
+export function decodeClippingParams(encoded: string): ClippingParams
+export function encodeClippingParams(params: ClippingParams): string
 
-  // Clipping
-  decodeClippingParams (encoded: string): ClippingParams
-  encodeClippingParams (params: ClippingParams): string
+// Defringe
+export function decodeDefringeParams(encoded: string): DefringeParams
+export function encodeDefringeParams(params: DefringeParams): string
 
-  // Defringe
-  DefringeMode: typeof DefringeMode
-  decodeDefringeParams (encoded: string): DefringeParams
-  encodeDefringeParams (params: DefringeParams): string
+// Flip
+export function decodeFlipParams(encoded: string): FlipParams
+export function encodeFlipParams(params: FlipParams): string
 
-  // Flip
-  ImageOrientation: typeof ImageOrientation
-  decodeFlipParams (encoded: string): FlipParams
-  encodeFlipParams (params: FlipParams): string
+// Basecurve
+export function decodeBasecurveParams(encoded: string): BasecurveParams
+export function encodeBasecurveParams(params: BasecurveParams): string
 
-  // Basecurve
-  BasecurveType: typeof BasecurveType
-  decodeBasecurveParams (encoded: string): BasecurveParams
-  encodeBasecurveParams (params: BasecurveParams): string
+// Masks
+export function decodeMaskPoints<MaskPoint>(maskType: string, numberPoints: number, encodedPoints: string): Array < MaskPoint >
+export function encodeMaskPoints<MaskPoint>(maskType: string, points: Array<MaskPoint>): string
 
-  // Masks
-  MaskType: typeof MaskType
-  decodeMaskPoints<MaskPoint> (maskType: string, numberPoints: number, encodedPoints: string): Array<MaskPoint>
-  encodeMaskPoints<MaskPoint> (maskType: string, points: Array<MaskPoint>): string
+// - circle mask
+export function decodeCircleMask(encodedMask: string): MaskCirclePoint
+export function encodeCircleMask(mask: MaskCirclePoint): string
 
-  // - circle mask
-  decodeCircleMask (encodedMask: string): MaskCirclePoint
-  encodeCircleMask (mask: MaskCirclePoint): string
+// - ellipse mask
+export function decodeEllipseMask(encodedMask: string): MaskEllipsePoint
+export function encodeEllipseMask(mask: MaskEllipsePoint): string
 
-  // - ellipse mask
-  EllipseFlags: typeof EllipseFlags
-  decodeEllipseMask (encodedMask: string): MaskEllipsePoint
-  encodeEllipseMask (mask: MaskEllipsePoint): string
+// - gradient mask
+export function decodeGradientMask(encodedMask: string): MaskGradientPoint
+export function encodeGradientMask(mask: MaskGradientPoint): string
 
-  // - gradient mask
-  decodeGradientMask (encodedMask: string): MaskGradientPoint
-  encodeGradientMask (mask: MaskGradientPoint): string
+// Helpers
+export function decodeParams(operation: 'sharpen', encodedParams: string): SharpenParams
+export function decodeParams(operation: 'levels', encodedParams: string): LevelsParams
+export function decodeParams(operation: 'shadhi', encodedParams: string): ShadhiParams
+export function decodeParams(operation: 'exposure', encodedParams: string): ExposureParams
+export function decodeParams(operation: 'blend', encodedParams: string): BlendParams
+export function decodeParams(operation: 'clipping', encodedParams: string): ClippingParams
+export function decodeParams(operation: 'defringe', encodedParams: string): DefringeParams
+export function decodeParams(operation: 'flip', encodedParams: string): FlipParams
+export function decodeParams(operation: 'basecurve', encodedParams: string): BasecurveParams
+export function decodeParams<T>(operation: string, encodedParams: string): T
 
-  // Helpers
-  decodeParams (operation: 'sharpen', encodedParams: string): SharpenParams
-  decodeParams (operation: 'levels', encodedParams: string): LevelsParams
-  decodeParams (operation: 'shadhi', encodedParams: string): ShadhiParams
-  decodeParams (operation: 'exposure', encodedParams: string): ExposureParams
-  decodeParams (operation: 'blend', encodedParams: string): BlendParams
-  decodeParams (operation: 'clipping', encodedParams: string): ClippingParams
-  decodeParams (operation: 'defringe', encodedParams: string): DefringeParams
-  decodeParams (operation: 'flip', encodedParams: string): FlipParams
-  decodeParams (operation: 'basecurve', encodedParams: string): BasecurveParams
-  decodeParams<T> (operation: string, encodedParams: string): T
-
-  encodeParams (operation: string, params: Params): string
-
-  // Errors
-  UnknownOperationError: typeof UnknownOperationError
-}
-
-export = darkroomXmpTools
+export function encodeParams<T extends Params>(operation: string, params: T): string

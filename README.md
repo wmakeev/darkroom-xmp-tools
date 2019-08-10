@@ -8,7 +8,7 @@ darkroom-xmp-tools
 
 ## Install
 
-> Tested on: MacOS (node v9.2.0) and Linux Mint (node v10.16)
+> Tested on: MacOS and Linux
 
 `$ npm install @wmakeev/darkroom-xmp-tools`
 
@@ -173,7 +173,7 @@ assert.strictEqual(encodedParamsStr, EXPOSURE_PARAMS_BIN_STR)
 
 ## TODO
 
-- Test on Windows
+- Windows support?
 - Improve errors messages and arguments validation
 
 ## Changes
@@ -183,6 +183,6 @@ assert.strictEqual(encodedParamsStr, EXPOSURE_PARAMS_BIN_STR)
   - Add Travis build
 
 ### 2.0.1
-  - Add Linux build (tested on Linux Mint)
+  - Add Linux support
   - Add some arguments validation
   - Fix some bugs

@@ -6,9 +6,9 @@ const testOperation = require('./testOperation')
 
 const OPERATION = 'levels'
 
-assert.equal(
+assert.strictEqual(
   sidecar.LevelsMode.LEVELS_MODE_AUTOMATIC, 'LEVELS_MODE_AUTOMATIC')
-assert.equal(
+assert.strictEqual(
   sidecar.LevelsMode.LEVELS_MODE_MANUAL, 'LEVELS_MODE_MANUAL')
 
 // levelsParams: {

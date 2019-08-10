@@ -34,7 +34,15 @@ Napi::Value decode_blend_params(const Napi::CallbackInfo &info)
     return env.Null();
   }
 
-  const char *encoded_params = info[0].As<Napi::String>().Utf8Value().c_str();
+  std::string encoded_params_str = info[0].ToString().Utf8Value();
+  const char *encoded_params = encoded_params_str.c_str();
+
+  if (strlen(encoded_params) == 0)
+  {
+    Napi::TypeError::New(env, "Wrong arguments (empty params string)")
+        .ThrowAsJavaScriptException();
+    return env.Null();
+  }
 
   int params_len;
 

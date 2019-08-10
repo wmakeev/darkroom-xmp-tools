@@ -35,6 +35,22 @@
             '<!@(pkg-config --cflags glib-2.0)',
             '<!@(pkg-config --cflags zlib)'
           ]
+        }],
+        ['OS=="linux"', {
+          "include_dirs" : [
+            "/usr/include",
+            "/usr/local/include",
+            "/usr/include/glib-2.0",
+            "/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+          ],
+          "libraries": [
+            '<!@(pkg-config --libs glib-2.0)',
+            '<!@(pkg-config --libs zlib)'
+          ],
+          'cflags': [
+            '<!@(pkg-config --cflags glib-2.0)',
+            '<!@(pkg-config --cflags zlib)'
+          ]
         }]
       ],
       "cflags!": [ "-fno-exceptions" ],

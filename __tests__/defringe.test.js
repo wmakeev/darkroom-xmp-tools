@@ -6,11 +6,11 @@ const testOperation = require('./testOperation')
 
 const OPERATION = 'defringe'
 
-assert.equal(
+assert.strictEqual(
   sidecar.DefringeMode.MODE_GLOBAL_AVERAGE, 'MODE_GLOBAL_AVERAGE')
-assert.equal(
+assert.strictEqual(
   sidecar.DefringeMode.MODE_LOCAL_AVERAGE, 'MODE_LOCAL_AVERAGE')
-assert.equal(
+assert.strictEqual(
   sidecar.DefringeMode.MODE_STATIC, 'MODE_STATIC')
 
 // defringeParams: {

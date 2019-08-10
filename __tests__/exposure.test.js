@@ -6,9 +6,10 @@ const testOperation = require('./testOperation')
 
 const OPERATION = 'exposure'
 
-assert.equal(
+assert.strictEqual(
   sidecar.ExposureMode.EXPOSURE_MODE_DEFLICKER, 'EXPOSURE_MODE_DEFLICKER')
-assert.equal(
+
+assert.strictEqual(
   sidecar.ExposureMode.EXPOSURE_MODE_MANUAL, 'EXPOSURE_MODE_MANUAL')
 
 // exposureParams: {

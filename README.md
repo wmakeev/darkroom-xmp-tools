@@ -2,8 +2,9 @@ darkroom-xmp-tools
 ==================
 
 [![npm](https://img.shields.io/npm/v/@wmakeev/darkroom-xmp-tools.svg?maxAge=1800&style=flat-square)](https://www.npmjs.com/package/@wmakeev/darkroom-xmp-tools)
+[![Travis](https://img.shields.io/travis/wmakeev/darkroom-xmp-tools.svg?maxAge=1800&style=flat-square)](https://travis-ci.org/wmakeev/darkroom-xmp-tools)
 
-> Retrieve and update [darktable](https://www.darktable.org/) operations params stored in sidecar xmp files. This helps automize image processing with [darktable-cli](https://www.darktable.org/usermanual/en/overview_chapter.html#darktable_cli_commandline_parameters)
+> Retrieve and update [darktable](https://www.darktable.org/) operations params stored in sidecar xmp files. This helps automate image processing with [darktable-cli](https://www.darktable.org/usermanual/en/overview_chapter.html#darktable_cli_commandline_parameters)
 
 ## Install
 
@@ -173,11 +174,15 @@ assert.strictEqual(encodedParamsStr, EXPOSURE_PARAMS_BIN_STR)
 ## TODO
 
 - Test on Windows
-- Improve errors message and arguments validation
+- Improve errors messages and arguments validation
 
 ## Changes
 
+### 2.0.2
+  - Fix Typescript typings
+  - Add Travis build
+
 ### 2.0.1
-  - Add Linux build (Linux Mint)
+  - Add Linux build (tested on Linux Mint)
   - Add some arguments validation
   - Fix some bugs

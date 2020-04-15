@@ -245,8 +245,8 @@ export function decodeBasecurveParams(encoded: string): BasecurveParams
 export function encodeBasecurveParams(params: BasecurveParams): string
 
 // Masks
-export function decodeMaskPoints<MaskPoint>(maskType: string, numberPoints: number, encodedPoints: string): Array < MaskPoint >
-export function encodeMaskPoints<MaskPoint>(maskType: string, points: Array<MaskPoint>): string
+export function decodeMaskPoints<T extends MaskPoint>(maskType: string, numberPoints: number, encodedPoints: string): Array <T>
+export function encodeMaskPoints<T extends MaskPoint>(maskType: string, points: Array<T>): string
 
 // - circle mask
 export function decodeCircleMask(encodedMask: string): MaskCirclePoint

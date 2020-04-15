@@ -1,6 +1,6 @@
 {
   "name": "@wmakeev/darkroom-xmp-tools",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Retrieve and update darkroom operations params stored in sidecar xmp files",
   "main": "index.js",
   "types": "index.d.ts",

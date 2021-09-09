@@ -121,6 +121,18 @@ assert.strictEqual(encodedParamsStr, EXPOSURE_PARAMS_BIN_STR)
 
 - `encodeBasecurveParams (params: Basecurve): string`
 
+### Rawprepare
+
+- `decodeRawprepareParams (encoded: string): RawprepareParams`
+
+- `encodeRawprepareParams (params: RawprepareParams): string`
+
+### Crop
+
+- `decodeCropParams (encoded: string): CropParams`
+
+- `encodeCropParams (params: CropParams): string`
+
 ### Common
 
 - `decodeParams (operation: 'sharpen', encodedParams: string): SharpenParams`
@@ -140,6 +152,10 @@ assert.strictEqual(encodedParamsStr, EXPOSURE_PARAMS_BIN_STR)
 - `decodeParams (operation: 'flip', encodedParams: string): FlipParams`
 
 - `decodeParams (operation: 'basecurve', encodedParams: string): BasecurveParams`
+
+- `decodeParams (operation: 'rawprepare', rawprepareParams: string): RawprepareParams`
+
+- `decodeParams (operation: 'crop', encodedParams: string): CropParams`
 
 - `encodeParams (operation: string, params: Params): string`
 

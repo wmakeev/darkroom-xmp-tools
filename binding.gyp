@@ -14,7 +14,9 @@
         'src/blend.cpp',
         'src/clipping.cpp',
         'src/masks.cpp',
-        'src/flip.cpp'
+        'src/flip.cpp',
+        'src/rawprepare.cpp',
+        'src/crop.cpp'
       ],
       'include_dirs' : [
         "<!@(node -p \"require('node-addon-api').include\")"

@@ -13,6 +13,8 @@
 #include "clipping.h"
 #include "masks.h"
 #include "flip.h"
+#include "rawprepare.h"
+#include "crop.h"
 
 Napi::Object Init(Napi::Env env, Napi::Object exports)
 {
@@ -105,6 +107,24 @@ Napi::Object Init(Napi::Env env, Napi::Object exports)
   exports.Set(
       Napi::String::New(env, "encodeMaskPoints"),
       Napi::Function::New(env, encode_mask_points));
+
+  // rawprepare
+  exports.Set(
+      Napi::String::New(env, "decodeRawprepareParams"),
+      Napi::Function::New(env, decode_rawprepare_params));
+
+  exports.Set(
+      Napi::String::New(env, "encodeRawprepareParams"),
+      Napi::Function::New(env, encode_rawprepare_params));
+
+  // crop
+  exports.Set(
+      Napi::String::New(env, "decodeCropParams"),
+      Napi::Function::New(env, decode_crop_params));
+
+  exports.Set(
+      Napi::String::New(env, "encodeCropParams"),
+      Napi::Function::New(env, encode_crop_params));
 
   return exports;
 };

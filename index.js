@@ -124,6 +124,12 @@ function decodeParams (operation, paramsStr) {
     case 'basecurve':
       return tools.decodeBasecurveParams(paramsStr)
 
+    case 'rawprepare':
+      return tools.decodeRawprepareParams(paramsStr)
+
+    case 'crop':
+      return tools.decodeCropParams(paramsStr)
+
     default:
       throw new UnknownOperationError(operation)
   }
@@ -157,6 +163,12 @@ function encodeParams (operation, params) {
 
     case 'basecurve':
       return tools.encodeBasecurveParams(params)
+
+    case 'rawprepare':
+      return tools.encodeRawprepareParams(params)
+
+    case 'crop':
+      return tools.encodeCropParams(params)
 
     default:
       throw new UnknownOperationError(operation)

@@ -8,5 +8,7 @@ require('./blend.test')
 require('./clipping.test')
 require('./flip.test')
 require('./mask.test')
+require('./rawprepare.test')
+require('./crop.test')
 
 require('./errors.test')

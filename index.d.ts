@@ -160,6 +160,24 @@ export interface FlipParams extends Params {
   orientation: ImageOrientation
 }
 
+export interface RawprepareParams extends Params {
+  x: number
+  y: number
+  width: number
+  height: number
+  rawBlackLevelSeparate: [number, number, number, number]
+  rawWhitePoint: number
+}
+
+export interface CropParams extends Params {
+  cx: number
+  cy: number
+  cw: number
+  ch: number
+  ratioN: number
+  ratioD: number
+}
+
 // Masks
 export enum MaskType {
   NONE = 0,
@@ -244,6 +262,14 @@ export function encodeFlipParams(params: FlipParams): string
 export function decodeBasecurveParams(encoded: string): BasecurveParams
 export function encodeBasecurveParams(params: BasecurveParams): string
 
+// Rawprepare
+export function decodeRawprepareParams(encoded: string): RawprepareParams
+export function encodeRawprepareParams(params: RawprepareParams): string
+
+// Crop
+export function decodeCropParams(encoded: string): CropParams
+export function encodeCropParams(params: CropParams): string
+
 // Masks
 export function decodeMaskPoints<T extends MaskPoint>(maskType: string, numberPoints: number, encodedPoints: string): Array <T>
 export function encodeMaskPoints<T extends MaskPoint>(maskType: string, points: Array<T>): string
@@ -270,6 +296,8 @@ export function decodeParams(operation: 'clipping', encodedParams: string): Clip
 export function decodeParams(operation: 'defringe', encodedParams: string): DefringeParams
 export function decodeParams(operation: 'flip', encodedParams: string): FlipParams
 export function decodeParams(operation: 'basecurve', encodedParams: string): BasecurveParams
+export function decodeParams(operation: 'rawprepare', encodedParams: string): RawprepareParams
+export function decodeParams(operation: 'crop', encodedParams: string): CropParams
 export function decodeParams<T>(operation: string, encodedParams: string): T
 
 export function encodeParams<T extends Params>(operation: string, params: T): string

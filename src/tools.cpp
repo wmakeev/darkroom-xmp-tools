@@ -110,6 +110,9 @@ unsigned char *dt_exif_xmp_decode(const char *input, const int len, int *output_
     // we have compressed data in base64 representation with leading "gz"
 
     // get stored compression factor so we know the needed buffer size for uncompress
+    // reject a non-digit factor (valid darktable XMP always writes it as two ASCII digits)
+    if (len < 4 || input[2] < '0' || input[2] > '9' || input[3] < '0' || input[3] > '9')
+      return NULL;
     const float factor = 10 * (input[2] - '0') + (input[3] - '0');
 
     // get a rw copy of input buffer omitting leading "gz" and compression factor
@@ -124,6 +127,15 @@ unsigned char *dt_exif_xmp_decode(const char *input, const int len, int *output_
     // do the actual uncompress step
     int result = Z_BUF_ERROR;
     uLongf bufLen = factor * compressed_size;
+    // cap the allocation so a crafted factor/length cannot force a multi-GiB malloc
+    const uLongf DT_XMP_DECODE_MAX = 64UL * 1024 * 1024;
+    if (bufLen == 0)
+      bufLen = compressed_size ? (uLongf)compressed_size : 1;
+    if (bufLen > DT_XMP_DECODE_MAX)
+    {
+      free(buffer);
+      return NULL;
+    }
     uLongf destLen;
 
     // we know the actual compression factor but if that fails we re-try with
@@ -142,7 +154,7 @@ unsigned char *dt_exif_xmp_decode(const char *input, const int len, int *output_
 
       bufLen *= 2;
 
-    } while (result == Z_BUF_ERROR);
+    } while (result == Z_BUF_ERROR && bufLen <= DT_XMP_DECODE_MAX);
 
     free(buffer);
 

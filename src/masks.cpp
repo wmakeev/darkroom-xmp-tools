@@ -48,6 +48,12 @@ Napi::Value decode_mask_points(const Napi::CallbackInfo &info)
       encoded_points_blob,
       strlen(encoded_points_blob), NULL);
 
+  if (!points_blob)
+  {
+    Napi::TypeError::New(env, "Failed to decode encoded points").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+
   // GList *points_list = NULL;
 
   Napi::Array points_array = Napi::Array::New(env, nb_points);

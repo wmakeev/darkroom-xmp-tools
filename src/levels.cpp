@@ -36,6 +36,12 @@ Napi::Value decode_levels_params(const Napi::CallbackInfo &info)
       (dt_iop_levels_params_t *)dt_exif_xmp_decode(
           encoded_params, strlen(encoded_params), &params_len);
 
+  if (!params)
+  {
+    Napi::TypeError::New(env, "Failed to decode params").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+
   Napi::Object params_obj = Napi::Object::New(env);
 
   // mode
